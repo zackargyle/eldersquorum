@@ -1,0 +1,103 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: Helvetica;
+	font-weight: lighter;
+	min-width: 1000px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.cs-header a:visited {
+	color: white;
+}
+
+.cs-header a:hover {
+	color: rgba(255,255,255,.5);
+}
+
+.cs-header {
+	background-color: rgba(60,77,112, 1);
+	border-bottom: 2px solid rgba(255,255,255,.2);
+	color: white;
+	font-size: 20px;
+	padding: 25px 40px 15px;
+}
+
+.cs-header > a {
+	color: white;
+	padding-left: 30px;
+}
+
+/*			Animation Classes			*/
+
+.anim-fadein {
+  -webkit-transition:opacity cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+  -moz-transition:opacity cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+  -o-transition:opacity cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+  transition:opacity cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+  opacity: 1 !important;
+}
+
+/*			Utility Classes			*/
+
+.u-inline {
+	display: inline-block;
+}
+
+.u-center {
+	text-align: center;
+}
+
+.u-pointer:hover {
+	cursor: pointer;
+}
+
+.u-faded {
+	opacity: .5;
+}
+
+.u-slate {
+	width: 100%;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	margin: 5px 0;
+}
+
+.u-label-xsmall {
+	font-size: 10px;
+	font-weight: lighter;
+}
+
+.u-label-small {
+	font-size: 12px;
+	font-weight: lighter;
+}
+
+.u-label-medium {
+	font-size: 14px;
+	font-weight: lighter;
+}
+
+.u-label-large {
+	font-size: 16px;
+	font-weight: lighter;
+}
+
+.u-label-xlarge {
+	font-size: 18px;
+	font-weight: lighter;
+}
+
+.u-lr-box {
+	clear: both;
+}
+
+.u-lr-box > * {
+	display: inline-block;
+}
+
+.u-lr-box > *:nth-child(2) {
+	float: right;
+}
