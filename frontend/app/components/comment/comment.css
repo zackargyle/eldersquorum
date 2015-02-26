@@ -1,0 +1,24 @@
+/*		 Comment Component		*/
+
+.comment-container {
+	width: 100%;
+	padding: 5px 0;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.comment-body {
+	width: 77%;
+}
+.comment-side {
+	width: 20%;
+	margin-left: 1%;
+	vertical-align: top;
+}
+.comment-actions div {
+	width: 49%;
+	padding-top: 5px;
+	text-align: center;
+}
+
+.comment-like-tick {
+	display: inline-block;
+}

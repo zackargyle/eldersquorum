@@ -1,0 +1,24 @@
+<div class="members">
+	<div class="members-search-box">
+		<div class="members-search-header">Search for a member of the Quorum!</div>
+		<input class="members-search-input" placeholder="Find a member" ng-model="query"/>
+	</div>
+	<table class="members-table">
+		<thead>
+			<tr>
+				<th ng-click="order = 'name'">Full Name</th>
+				<th ng-click="order = 'phone'">Phone Number</th>
+				<th ng-click="order = 'email'">Email</th>
+				<th>Companionship</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="member in members|filter:query|orderBy:order" class="members-row">
+				<td>{{member.name}}</td>
+				<td><a href="tel:{{member.phone}}">{{member.phone}}</a></td>
+				<td><a href="mailto:{{member.email}}">{{member.email}}</a></td>
+				<td>{{member.companionship.join(' - ')}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
