@@ -16,12 +16,12 @@ angular.module('cs2', [ 'ngRoute', 'ngCookies' ])
     $routeProvider
       .when('/home', {
         title: 'Home',
-        templateUrl: 'views/home/home.html',
+        templateUrl: 'app/views/home/home.html',
         controller: 'HomeCtrl'
       })
       .when('/reporting', {
         title: 'Reporting',
-        templateUrl: 'views/reporting/reporting.html',
+        templateUrl: 'app/views/reporting/reporting.html',
         controller: 'ReportingCtrl'
       })
       .otherwise({

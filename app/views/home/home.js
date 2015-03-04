@@ -8,13 +8,13 @@ angular.module('cs2')
    	localStorage = localStorage || {};
 
    	// Load Presidency Info
-		$http.get('resources/presidency.json')
+		$http.get('app/resources/presidency.json')
 			.then(function(res) {
 				$scope.presidency = res.data;
 			});
 
 		// Load verse of the day
-		$http.get('resources/verses.json')
+		$http.get('app/resources/verses.json')
 			.then(loadVerseOfTheDay);
 		
 		function loadVerseOfTheDay(res) {
@@ -24,7 +24,6 @@ angular.module('cs2')
 
 			$http.get(url + scripture.slug)
 				.then(function(res) {
-					console.log(res);
 					$scope.verses = res.data;
 					$scope.reference = scripture.ref;
 				});

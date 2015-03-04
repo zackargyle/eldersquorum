@@ -275,9 +275,9 @@ p.directive("ngView",u);p.directive("ngView",z);u.$inject=["$route","$anchorScro
 
 /**
  * @ngdoc overview
- * @name Grapevine
+ * @name Crystal Springs 2 EQ
  * @description
- * # Chrome Extension for commenting on websites
+ * # Tool for easy hometeaching reporting
  *
  * Main module of the application.
  */
@@ -287,17 +287,17 @@ angular.module('cs2', [ 'ngRoute', 'ngCookies' ])
    * @description
    * # Module for handling view state and path
    */
-  .config(['$routeProvider', function($routeProvider) {
+  .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
     $routeProvider
       .when('/home', {
         title: 'Home',
-        templateUrl: 'views/home/home.html',
+        templateUrl: 'app/views/home/home.html',
         controller: 'HomeCtrl'
       })
-      .when('/members', {
-        title: 'Members',
-        templateUrl: 'views/members/members.html',
-        controller: 'MembersCtrl'
+      .when('/reporting', {
+        title: 'Reporting',
+        templateUrl: 'app/views/reporting/reporting.html',
+        controller: 'ReportingCtrl'
       })
       .otherwise({
         redirectTo: '/home'
@@ -313,13 +313,13 @@ angular.module('cs2')
    	localStorage = localStorage || {};
 
    	// Load Presidency Info
-		$http.get('resources/presidency.json')
+		$http.get('app/resources/presidency.json')
 			.then(function(res) {
 				$scope.presidency = res.data;
 			});
 
 		// Load verse of the day
-		$http.get('resources/verses.json')
+		$http.get('app/resources/verses.json')
 			.then(loadVerseOfTheDay);
 		
 		function loadVerseOfTheDay(res) {
@@ -329,7 +329,6 @@ angular.module('cs2')
 
 			$http.get(url + scripture.slug)
 				.then(function(res) {
-					console.log(res);
 					$scope.verses = res.data;
 					$scope.reference = scripture.ref;
 				});
@@ -344,69 +343,61 @@ angular.module('cs2')
 /*  Member Directory Controller  */
 
 angular.module('cs2')
-  .controller('MembersCtrl', [ '$scope', '$http',
+  .controller('ReportingCtrl', ['$scope', '$http',
    function ($scope, $http) {
-		$http.get('resources/members.json')
-			.then(function(res) {
-				$scope.members = res.data;
+		var trelloAPI = 'https://api.trello.com/1';
+		var trelloQuery = '?token=95257ca3f965f0595d04dfd59a6129aaa4a7054f3ea92f8a4eb8ac7349688a9b&key=5fe32205aa9a10a42ffdb4d8638d1aef';
+
+		$scope.toggleState = function(card, checkitem) {
+			var newState = (checkitem.state === 'complete') ? 'incomplete' : 'complete';
+			// Update remote
+			var url = trelloAPI;
+			url += '/cards/' + card.id;
+			url += '/checklist/' + card.checklistId;
+			url += '/checkItem/' + checkitem.id + '/state';
+			$http.put(url + trelloQuery + '&value=' + newState)
+				.then(function(res) {
+					checkitem.state = res.data.state;
+				});
+		};
+
+		function getTrelloData() {
+			var url = trelloAPI + '/board/zk9vE04n';
+			var query = trelloQuery +'&lists=open&cards=visible&card_checklists=all';
+
+			$http.get(url + query).then(function(res) {
+				$scope.hometeachers = res.data.lists.slice(2);
+				linkCards(res.data.cards);
 			});
-   }]);
-angular.module('cs2')
-	.directive('comment', [
-		function(Comments, User) {
-			return {
-				restrict: 'E',
-				replace: true,
-				templateUrl: 'components/comment/comment.html',
-				link: function($scope) {
-
-				}
-			};
-		}]);
-angular.module('cs2')
-	.directive('loader', [
-		'$rootScope',
-		'$timeout',
-		function($rootScope, $timeout) {
-			return {
-				restrict: 'E',
-				replace: true,
-				template: '<div ng-show="showLoader">' +
-					'	<div ' +
-					'		style="width: 8px;height:35px;margin-left:5px;display:inline-block"' +
-					'		ng-style="{&quot;background-color&quot;:slate}"' +
-					'		ng-repeat="slate in slates">' +
-					'	</div>' +
-					'</div>',
-				link: function($scope) {
-					$scope.slates = [
-						'rgba(255,255,255,.4)',
-						'rgba(255,255,255,.5)',
-						'rgba(255,255,255,.6)',
-						'rgba(255,255,255,.7)',
-						'rgba(255,255,255,.6)',
-						'rgba(255,255,255,.5)'
-					];
-
-					$scope.$on('loader-show', function(e) {
-						$scope.showLoader = true;
-						animate();
-						e.preventDefault();
-					});
-
-					$scope.$on('loader-hide', function(e) {
-						$scope.showLoader = false;
-						e.preventDefault();
-					});
-
-					function animate() {
-						$scope.slates.push($scope.slates.shift());
-						if ($scope.showLoader) {
-							$timeout(animate, 130);
-						}
-					}
-
-				}
-			};
 		}
-	]);
+
+		function linkCards(cards) {
+			angular.forEach(cards, function(card) {
+				var whiteList = ['54ee197fd0c046a0c117f36e', '54ee197fd0c046a0c117f36f'];
+				if (whiteList.indexOf(card.idList) !== -1) return ;
+
+				var hometeachers = $scope.hometeachers[findHTById(card.idList)];
+
+				if (hometeachers.families === undefined) {
+					hometeachers.families = [];
+				}
+
+				hometeachers.families.push({
+					id: card.id,
+					name: card.name,
+					checklistId: card.checklists[0].id,
+					visits: card.checklists[0].checkItems
+				});
+			});
+		}
+
+		function findHTById(id) {
+			for (var i = 0; i < $scope.hometeachers.length; i++) {
+				if ($scope.hometeachers[i].id === id) {
+					return i;
+				}
+			}
+		}
+
+		getTrelloData();
+   }]);
