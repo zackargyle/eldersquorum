@@ -1,0 +1,250 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: Helvetica;
+	font-weight: lighter;
+	min-width: 1000px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.cs-header a:visited {
+	color: white;
+}
+
+.cs-header a:hover {
+	color: rgba(255,255,255,.5);
+}
+
+.cs-header {
+	background-color: rgba(60,77,112, 1);
+	border-bottom: 2px solid rgba(255,255,255,.2);
+	color: white;
+	font-size: 20px;
+	padding: 25px 40px 15px;
+}
+
+.cs-header > a {
+	color: white;
+	padding-left: 30px;
+}
+
+/*			Animation Classes			*/
+
+.anim-fadein {
+  -webkit-transition:opacity cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+  -moz-transition:opacity cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+  -o-transition:opacity cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+  transition:opacity cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+  opacity: 1 !important;
+}
+
+/*			Utility Classes			*/
+
+.u-inline {
+	display: inline-block;
+}
+
+.u-center {
+	text-align: center;
+}
+
+.u-pointer:hover {
+	cursor: pointer;
+}
+
+.u-faded {
+	opacity: .5;
+}
+
+.u-slate {
+	width: 100%;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	margin: 5px 0;
+}
+
+.u-label-xsmall {
+	font-size: 10px;
+	font-weight: lighter;
+}
+
+.u-label-small {
+	font-size: 12px;
+	font-weight: lighter;
+}
+
+.u-label-medium {
+	font-size: 14px;
+	font-weight: lighter;
+}
+
+.u-label-large {
+	font-size: 16px;
+	font-weight: lighter;
+}
+
+.u-label-xlarge {
+	font-size: 18px;
+	font-weight: lighter;
+}
+
+.u-lr-box {
+	clear: both;
+}
+
+.u-lr-box > * {
+	display: inline-block;
+}
+
+.u-lr-box > *:nth-child(2) {
+	float: right;
+}
+/*		Home View 		*/
+
+.home-background {
+	background: url('http://jesuschrist.lds.org/bc/content/New%20Home%20Page%20Images/Final/savior-soft_edges.png');
+	background-repeat: no-repeat;
+	width: 1000px;
+	height: 500px;
+	right: 0;
+	bottom: 50px;
+	position: absolute;
+	z-index: -1;
+}
+
+.home-body {
+	background-color: rgba(255,255,255,.2);
+	height: 500px;
+	margin: 55px 0 20px 10%;
+}
+
+.home-welcome {
+	font-size: 50px;
+	margin-bottom: 30px;
+}
+
+.home-welcome > div {
+	margin-top: 10px;
+}
+
+.home-presidency-member {
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+.home-presidency-member > a {
+	color: rgba(0, 145, 188, 1);
+}
+
+.home-presidency-member > a:hover {
+	color: rgba(0, 145, 188, .5);
+	cursor: pointer;
+}
+
+.home-verses {
+	width: 400px;
+	color: rgba(0,0,0,.8);
+	margin-top: 30px;
+	opacity: 0;
+}
+
+.home-verse-header {
+	font-size: 34px;
+	text-decoration: underline;
+}
+
+.home-verse {
+	line-height: 18px;
+	margin-top: 10px;
+}
+
+.home-verse-ref {
+	color: rgba(0, 145, 188, 1);
+	margin-top: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+	.home-background {
+		left: 0;
+	}
+}
+
+/*		Members View 		*/
+
+.members {
+	margin: 30px auto;
+	width: 700px;
+}
+
+.members-search-header {
+	color: rgba(0,0,0,.7);
+	display: inline-block;
+	font-size: 22px;
+	width: 54%;
+}
+
+.members-search-input {
+	display: inline-block;
+	font-size: 16px;
+	padding: 10px 5px;
+	width: 45%;
+}
+
+.members-table {
+	border-collapse: collapse;
+	margin-top: 30px;
+	min-width: 700px;
+}
+
+.members-table a {
+	color: rgba(0, 145, 188, 1);
+}
+
+.members-table a:hover {
+	color: rgba(0, 145, 188, .5);
+}
+
+.members-table th {
+	color: rgba(0,0,0,.7);
+	font-size: 20px;
+	text-align: left;
+}
+
+.members-table th:hover {
+	cursor: pointer;
+}
+
+.members-row td, .members-table th {
+	padding: 15px 10px;
+}
+
+.members-row:nth-child(odd) {
+	background-color: rgba(100,100,100,.1);
+}
+
+/*		 Comment Component		*/
+
+.comment-container {
+	width: 100%;
+	padding: 5px 0;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.comment-body {
+	width: 77%;
+}
+.comment-side {
+	width: 20%;
+	margin-left: 1%;
+	vertical-align: top;
+}
+.comment-actions div {
+	width: 49%;
+	padding-top: 5px;
+	text-align: center;
+}
+
+.comment-like-tick {
+	display: inline-block;
+}

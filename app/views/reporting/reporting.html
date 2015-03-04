@@ -1,0 +1,24 @@
+<div class="reporting">
+	<div class="reporting-search-box">
+		<div class="reporting-search-header">Search for a member of the Quorum!</div>
+		<input class="reporting-search-input" placeholder="Find a member" ng-model="query"/>
+	</div>
+	<div class="reporting-companionships">
+		<div class="reporting-companionship" ng-repeat="companionship in hometeachers|filter:query">
+			<div class="reporting-comp-name">{{companionship.name}}</div>
+			<div class="reporting-comp-families">
+				<div class="reporting-comp-family" ng-repeat="family in companionship.families">
+					<div class="u-inline">{{family.name}}</div>
+					<div class="reporting-comp-visits">
+						<div class="u-inline" ng-repeat="visit in family.visits|limitTo:3">
+							<div class="reporting-checkbox-label u-inline">{{visit.name}}</div>
+							<div class="reporting-checkbox u-inline"
+								ng-class="{'checked': visit.state === 'complete'}"
+								ng-click="toggleState(family, visit)"
+							></div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
