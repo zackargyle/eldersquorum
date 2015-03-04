@@ -1,0 +1,18 @@
+[
+	{
+		"title":  "President",
+		"name":  "Steven Cox",
+		"phone":  "(650) 393-5254",
+		"email":  "brothercox@gmail.com"
+	}, {
+		"title":  "1st Counselor",
+		"name":  "Huy Nguyen",
+		"phone":  "(512) 569-7995",
+		"email":  "hn.designer@gmail.com"
+	}, {
+		"title":  "2nd Counselor",
+		"name":  "Zack Argyle",
+		"phone":  "(253) 326-3169",
+		"email":  "zack.argyle@gmail.com"
+	}
+]

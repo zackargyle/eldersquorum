@@ -1,0 +1,23 @@
+<div>
+	<div class="home-background"></div>
+	<div class="home-body">
+		<div class="home-welcome">
+			<div>Crystal Springs 2nd Ward</div>
+			<div>Elder's Quorum</div>
+		</div>
+		<div class="home-presidency">
+			<div class="home-presidency-member" ng-repeat="member in presidency">
+				<b>{{member.title}}</b>: {{member.name}},
+				<a href="tel:{{stripNumber(member.phone)}}">{{member.phone}}</a>,
+				<a href="mailto:{{member.email}}">{{member.email}}</a>
+			</div>
+			<div class="home-verses" ng-class="{'anim-fadeIn': verses}">
+				<div class="home-verse-header">A scripture for you!</div>
+				<div class="home-verse" ng-repeat="verse in verses">
+					{{verse.verse}}. {{verse.text}}
+				</div>
+				<div class="home-verse-ref">{{reference}}</div>
+			</div>
+		</div>
+	</div>
+</div>
